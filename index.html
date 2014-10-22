@@ -100,7 +100,7 @@
 <h1>
 <a href="http://www.lua.org/home.html"><img src="./Lua 5.2 Reference Manual_files/logo.gif" alt="" border="0"></a>
 <!--Lua 5.2 Reference Manual-->
-Lua 5.2 使用手册
+Lua 5.2 参考手册
 </h1>
 
 by Roberto Ierusalimschy, Luiz Henrique de Figueiredo, Waldemar Celes
@@ -323,40 +323,54 @@ of a given value (see <a href="http://angrybuns.github.com#6.1">§6.1</a>).
 
 
 
-</p><h2>2.2 – <a name="2.2">Environments and the Global Environment</a></h2>
+</p><h2>2.2 – <a name="2.2">
+<!--Environments and the Global Environment-->
+环境与全局环境
+</a></h2>
 
 <p>
-As will be discussed in <a href="http://angrybuns.github.com#3.2">§3.2</a> and <a href="http://angrybuns.github.com#3.3.3">§3.3.3</a>,
+<!--As will be discussed in <a href="http://angrybuns.github.com#3.2">§3.2</a> and <a href="http://angrybuns.github.com#3.3.3">§3.3.3</a>,
 any reference to a global name <code>var</code> is syntactically translated
 to <code>_ENV.var</code>.
 Moreover, every chunk is compiled in the scope of
 an external local variable called <code>_ENV</code> (see <a href="http://angrybuns.github.com#3.3.2">§3.3.2</a>),
-so <code>_ENV</code> itself is never a global name in a chunk.
+so <code>_ENV</code> itself is never a global name in a chunk.-->
 
+就像会在 <a href="http://angrybuns.github.com#3.2">§3.2</a> 和 <a href="http://angrybuns.github.com#3.3.3">§3.3.3</a> 章节内提到的那样,
+任何全局变量 <code>var</code> 都会被翻译成
+ <code>_ENV.var</code>.
+此外，任何在局部变量范围之外编译的程序块都会被称为 <code>_ENV</code> （参考 <a href="http://angrybuns.github.com#3.3.2">§3.3.2</a>）,
+所以 <code>_ENV</code> 在任何程序块内都不可以做为全局名称。
 
 </p><p>
-Despite the existence of this external <code>_ENV</code> variable and
+<!--Despite the existence of this external <code>_ENV</code> variable and
 the translation of global names,
 <code>_ENV</code> is a completely regular name.
 In particular,
 you can define new variables and parameters with that name.
 Each reference to a global name uses the <code>_ENV</code> that is
 visible at that point in the program,
-following the usual visibility rules of Lua (see <a href="http://angrybuns.github.com#3.5">§3.5</a>).
+following the usual visibility rules of Lua (see <a href="http://angrybuns.github.com#3.5">§3.5</a>).-->
+尽管 <code>_ENV</code> 会被翻译成一个全局的变量名，但是
+<code>_ENV</code> 仍然是一个合法的变量名。
+甚至，你可以自定义一个名字为 <code>_ENV</code> 的变量。
+通过环境 <code>_ENV</code> 引用的全局变量，在代码处是可用的，符合普通的 lua 变量可见性规则（参考 <a href="http://angrybuns.github.com#3.5">§3.5</a>）。
 
 
 </p><p>
-Any table used as the value of <code>_ENV</code> is called an <em>environment</em>.
-
+<!--Any table used as the value of <code>_ENV</code> is called an <em>environment</em>.-->
+任何变量名为 <code>_ENV</code> 的 table 都可以被称为 <em>环境</em>。
 
 </p><p>
-Lua keeps a distinguished environment called the <em>global environment</em>.
+<!--Lua keeps a distinguished environment called the <em>global environment</em>.
 This value is kept at a special index in the C registry (see <a href="http://angrybuns.github.com#4.5">§4.5</a>).
-In Lua, the variable <a href="http://angrybuns.github.com#pdf-_G"><code>_G</code></a> is initialized with this same value.
-
+In Lua, the variable <a href="http://angrybuns.github.com#pdf-_G"><code>_G</code></a> is initialized with this same value.-->
+Lua 还存在一个不同于环境的 <em>全局环境</em>.
+这个值在 C 注册表中保存在一个特殊的索引下 （参考 <a href="http://angrybuns.github.com#4.5">§4.5</a>）。
+在整个 Lua 环境中, 变量 <a href="http://angrybuns.github.com#pdf-_G"><code>_G</code></a> 全部被初始化为一个相同的全局环境值。
 
 </p><p>
-When Lua compiles a chunk,
+<!--When Lua compiles a chunk,
 it initializes the value of its <code>_ENV</code> upvalue
 with the global environment (see <a href="http://angrybuns.github.com#pdf-load"><code>load</code></a>).
 Therefore, by default,
@@ -366,9 +380,13 @@ and several functions there operate on that environment.
 You can use <a href="http://angrybuns.github.com#pdf-load"><code>load</code></a> (or <a href="http://angrybuns.github.com#pdf-loadfile"><code>loadfile</code></a>)
 to load a chunk with a different environment.
 (In C, you have to load the chunk and then change the value
-of its first upvalue.)
-
-
+of its first upvalue.)-->
+当编译一个 Lua 代码段时，全局环境会被初始化为它的 <code>_ENV</code> upvalue
+（参考 <a href="http://angrybuns.github.com#pdf-load"><code>load</code></a>）。
+因此，在默认情况下，Lua 代码中的全局变量都是来自于对全局环境中成员的引用。
+此外，所有加载到全局环境的标准库和一些函数，都是工作在此环境中的。
+如果要在不同的环境下加载代码段，可以参考 <a href="http://angrybuns.github.com#pdf-load"><code>load</code></a> （或者 <a href="http://angrybuns.github.com#pdf-loadfile"><code>loadfile</code></a>）。
+（在 C 环境中， 你可以 load 代码段，然后调整它的第一个 upvalue 来实现环境的调整。）
 </p><p>
 If you change the global environment in the registry
 (through C code or the debug library),
