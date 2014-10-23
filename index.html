@@ -116,11 +116,11 @@ Freely available under the terms of the
 </p><hr>
 <p>
 
-<a href="http://www.lua.org/manual/5.2/contents.html#contents">contents</a>
+<a href="http://www.lua.org/manual/5.2/contents.html#contents">内容</a>
 ·
-<a href="http://www.lua.org/manual/5.2/contents.html#index">index</a>
+<a href="http://www.lua.org/manual/5.2/contents.html#index">索引</a>
 ·
-<a href="http://www.lua.org/manual/">other versions</a>
+<a href="http://www.lua.org/manual/">其它版本</a>
 
 <!-- ====================================================================== -->
 </p><p>
@@ -130,7 +130,7 @@ Freely available under the terms of the
 
 
 
-</p><h1>1 – <a name="1">Introduction</a></h1>
+</p><h1>1 – <a name="1"><!-- Introduction -->介绍</a></h1>
 
 <p>
 Lua is an extension programming language designed to support
@@ -177,14 +177,15 @@ see Roberto's book, <em>Programming in Lua</em>.
 
 
 
-</p><h1>2 – <a name="2">Basic Concepts</a></h1>
+</p><h1>2 – <a name="2"><!-- Basic Concepts -->基础概念</a></h1>
 
 <p>
-This section describes the basic concepts of the language.
+<!-- This section describes the basic concepts of the language. -->
+本章节主要对 lua 语言的一些基础概念进行描述。
 
 
 
-</p><h2>2.1 – <a name="2.1">Values and Types</a></h2>
+</p><h2>2.1 – <a name="2.1"><!-- Values and Types -->值与类型</a></h2>
 
 <p>
 Lua is a <em>dynamically typed language</em>.
@@ -357,9 +358,10 @@ following the usual visibility rules of Lua (see <a href="http://angrybuns.githu
 每个全局名，如果可以通过 <code>_ENV</code> 进行访问，则此全局名在此处也是可以被访问的，它遵循 lua 通用可见性规则（参考 <a href="http://angrybuns.github.com#3.5">§3.5</a>）。
 
 
+
 </p><p>
 <!--Any table used as the value of <code>_ENV</code> is called an <em>environment</em>.-->
-任何拥有类似于 <code>_ENV</code> 功能的 table 都可以被称为 <em>环境</em>。
+任何拥有类似于 <code>_ENV</code> 功能的 table 都可以被称为 <em>environment （环境）</em>。
 
 </p><p>
 <!--Lua keeps a distinguished environment called the <em>global environment</em>.
@@ -383,12 +385,12 @@ to load a chunk with a different environment.
 of its first upvalue.)-->
 当编译一个 Lua 代码段时，全局环境会被初始化为它的 <code>_ENV</code> upvalue
 （参考 <a href="http://angrybuns.github.com#pdf-load"><code>load</code></a>）。
-因此，在默认情况下，Lua 代码中的全局变量都是来自于对全局环境中成员的引用。
+因此，在默认情况下，Lua 代码中的全局变量都是通过全局环境做为访问入口来进行访问的。
 此外，所有加载到全局环境的标准库和一些函数，都是工作在此环境中的。
 如果要在不同的环境下加载代码段，可以参考 <a href="http://angrybuns.github.com#pdf-load"><code>load</code></a> （或者 <a href="http://angrybuns.github.com#pdf-loadfile"><code>loadfile</code></a>）。
 （在 C 环境中， 你可以 load 代码段，然后调整它的第一个 upvalue 来实现环境的调整。）
 </p><p>
-If you change the global environment in the registry
+<!-- If you change the global environment in the registry
 (through C code or the debug library),
 all chunks loaded after the change will get the new environment.
 Previously loaded chunks are not affected, however,
@@ -396,12 +398,15 @@ as each has its own reference to the environment in its <code>_ENV</code> variab
 Moreover, the variable <a href="http://angrybuns.github.com#pdf-_G"><code>_G</code></a>
 (which is stored in the original global environment)
 is never updated by Lua.
+ -->
+如果注册表中的全局环境被改变（可以通过 C 接口或者 debug 库），
+所有在这个改变之后加载的 chunks （代码段）都会使用新的环境。
+虽然全局环境改变之前加载的 chunk （代码段）不会受到新环境的影响，
+但是，它的环境变量 <code>_ENV</code> 却会引用到新的环境中。
+同时，变量 <a href="http://angrybuns.github.com#pdf-_G"><code>_G</code></a> （存储在初始全局环境中）
+永远不会被 lua 更新。
 
-
-
-
-
-</p><h2>2.3 – <a name="2.3">Error Handling</a></h2>
+</p><h2>2.3 – <a name="2.3"><!--Error Handling-->错误处理</a></h2>
 
 <p>
 Because Lua is an embedded extension language,
