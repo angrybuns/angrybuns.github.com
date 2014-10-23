@@ -337,10 +337,10 @@ an external local variable called <code>_ENV</code> (see <a href="http://angrybu
 so <code>_ENV</code> itself is never a global name in a chunk.-->
 
 就像会在 <a href="http://angrybuns.github.com#3.2">§3.2</a> 和 <a href="http://angrybuns.github.com#3.3.3">§3.3.3</a> 章节内提到的那样,
-任何全局变量 <code>var</code> 都会被翻译成
- <code>_ENV.var</code>.
-此外，任何在局部变量范围之外编译的程序块都会被称为 <code>_ENV</code> （参考 <a href="http://angrybuns.github.com#3.3.2">§3.3.2</a>）,
-所以 <code>_ENV</code> 在任何程序块内都不可以做为全局名称。
+任何对全局标识 <code>var</code> 的访问在语法上都会被翻译成 <code>_ENV.var</code>。
+此外，任何在局部变量范围之外编译的 chunk（程序块）都会被称为 <code>_ENV</code> 
+（参考 <a href="http://angrybuns.github.com#3.3.2">§3.3.2</a>）,
+所以 <code>_ENV</code> 不可能是一个 chunk （程序块）范围内的全局名。
 
 </p><p>
 <!--Despite the existence of this external <code>_ENV</code> variable and
@@ -351,15 +351,15 @@ you can define new variables and parameters with that name.
 Each reference to a global name uses the <code>_ENV</code> that is
 visible at that point in the program,
 following the usual visibility rules of Lua (see <a href="http://angrybuns.github.com#3.5">§3.5</a>).-->
-尽管 <code>_ENV</code> 会被翻译成一个全局的变量名，但是
+尽管外部变量 <code>_ENV</code> 会作为一个全局名存在，但是
 <code>_ENV</code> 仍然是一个合法的变量名。
-甚至，你可以自定义一个名字为 <code>_ENV</code> 的变量。
-通过环境 <code>_ENV</code> 引用的全局变量，在代码处是可用的，符合普通的 lua 变量可见性规则（参考 <a href="http://angrybuns.github.com#3.5">§3.5</a>）。
+甚至，你可以使用 <code>_ENV</code> 来作为一个变量（或参数）的名字。
+每个全局名，如果可以通过 <code>_ENV</code> 进行访问，则此全局名在此处也是可以被访问的，它遵循 lua 通用可见性规则（参考 <a href="http://angrybuns.github.com#3.5">§3.5</a>）。
 
 
 </p><p>
 <!--Any table used as the value of <code>_ENV</code> is called an <em>environment</em>.-->
-任何变量名为 <code>_ENV</code> 的 table 都可以被称为 <em>环境</em>。
+任何拥有类似于 <code>_ENV</code> 功能的 table 都可以被称为 <em>环境</em>。
 
 </p><p>
 <!--Lua keeps a distinguished environment called the <em>global environment</em>.
