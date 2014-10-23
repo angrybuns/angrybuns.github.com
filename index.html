@@ -133,7 +133,7 @@ Freely available under the terms of the
 </p><h1>1 – <a name="1"><!-- Introduction -->介绍</a></h1>
 
 <p>
-Lua is an extension programming language designed to support
+<!-- Lua is an extension programming language designed to support
 general procedural programming with data description
 facilities.
 It also offers good support for object-oriented programming,
@@ -141,11 +141,13 @@ functional programming, and data-driven programming.
 Lua is intended to be used as a powerful, lightweight,
 embeddable scripting language for any program that needs one.
 Lua is implemented as a library, written in <em>clean C</em>,
-the common subset of Standard&nbsp;C and C++.
-
+the common subset of Standard&nbsp;C and C++. -->
+Lua 被设计为一个辅助一般过程式编程的扩展型语言。同时它还对面向对象编程、函数式编程和数据驱动方式编程提供了良好的支持。Lua
+做为一个功能强大，轻量级的嵌入式语言，适用于任何需要的场合。Lua 是由标准 C 和 C++ 的共通子集 <em>clean C</em>
+实现的一个库。
 
 </p><p>
-Being an extension language, Lua has no notion of a "main" program:
+<!-- Being an extension language, Lua has no notion of a "main" program:
 it only works <em>embedded</em> in a host client,
 called the <em>embedding program</em> or simply the <em>host</em>.
 The host program can invoke functions to execute a piece of Lua code,
@@ -156,8 +158,13 @@ a wide range of different domains,
 thus creating customized programming languages sharing a syntactical framework.
 The Lua distribution includes a sample host program called <code>lua</code>,
 which uses the Lua library to offer a complete, standalone Lua interpreter,
-for interactive or batch use.
-
+for interactive or batch use. -->
+做为一个扩展型语言，Lua
+没有 "main" 程序的概念，它只能嵌入到一个被称为 <em>embedding program</em> 或简称 <em>host</em>
+的宿主程序内进行工作。宿主程序可以通过函数调用，来对实现对 Lua 代码段的运行、Lua 变量的读写。还可以注册 C
+函数，用来提供给 Lua 进行调用。对 C 函数的调用，使得 Lua
+的使用范围得到了极大的扩展，甚至，可以通过它来制作一个编程语言的语法框架。Lua
+发布包中包含了一个使用 Lua 库编写的，名为 <code>lua</code> 的简单宿主程序。它可以做为一个 Lua 解释器，完成对 Lua 的交互和批处理操作。
 
 </p><p>
 Lua is free software,
@@ -324,10 +331,7 @@ of a given value (see <a href="http://angrybuns.github.com#6.1">§6.1</a>).
 
 
 
-</p><h2>2.2 – <a name="2.2">
-<!--Environments and the Global Environment-->
-环境与全局环境
-</a></h2>
+</p><h2>2.2 – <a name="2.2"><!--Environments and the Global Environment-->环境与全局环境</a></h2>
 
 <p>
 <!--As will be discussed in <a href="http://angrybuns.github.com#3.2">§3.2</a> and <a href="http://angrybuns.github.com#3.3.3">§3.3.3</a>,
@@ -337,11 +341,13 @@ Moreover, every chunk is compiled in the scope of
 an external local variable called <code>_ENV</code> (see <a href="http://angrybuns.github.com#3.3.2">§3.3.2</a>),
 so <code>_ENV</code> itself is never a global name in a chunk.-->
 
-就像会在 <a href="http://angrybuns.github.com#3.2">§3.2</a> 和 <a href="http://angrybuns.github.com#3.3.3">§3.3.3</a> 章节内提到的那样,
-任何对全局标识 <code>var</code> 的访问在语法上都会被翻译成 <code>_ENV.var</code>。
-此外，任何在局部变量范围之外编译的 chunk（程序块）都会被称为 <code>_ENV</code> 
-（参考 <a href="http://angrybuns.github.com#3.3.2">§3.3.2</a>）,
-所以 <code>_ENV</code> 不可能是一个 chunk （程序块）范围内的全局名。
+就像会在
+<a href="http://angrybuns.github.com#3.2">§3.2</a> 和
+<a href="http://angrybuns.github.com#3.3.3">§3.3.3</a>
+章节内提到的那样,任何对全局标识 <code>var</code>
+的访问在语法上都会被翻译成 <code>_ENV.var</code>。此外，任何在局部变量范围之外编译的 chunk（程序块）都会被称为 <code>_ENV</code>
+（参考 <a href="http://angrybuns.github.com#3.3.2">§3.3.2</a>），所以
+<code>_ENV</code> 不可能是一个 chunk （程序块）范围内的全局名。
 
 </p><p>
 <!--Despite the existence of this external <code>_ENV</code> variable and
@@ -353,9 +359,10 @@ Each reference to a global name uses the <code>_ENV</code> that is
 visible at that point in the program,
 following the usual visibility rules of Lua (see <a href="http://angrybuns.github.com#3.5">§3.5</a>).-->
 尽管外部变量 <code>_ENV</code> 会作为一个全局名存在，但是
-<code>_ENV</code> 仍然是一个合法的变量名。
-甚至，你可以使用 <code>_ENV</code> 来作为一个变量（或参数）的名字。
-每个全局名，如果可以通过 <code>_ENV</code> 进行访问，则此全局名在此处也是可以被访问的，它遵循 lua 通用可见性规则（参考 <a href="http://angrybuns.github.com#3.5">§3.5</a>）。
+<code>_ENV</code> 仍然是一个合法的变量名。甚至，你可以使用
+<code>_ENV</code> 来作为一个变量（或参数）的名字。每个全局名，如果可以通过
+<code>_ENV</code> 进行访问，则此全局名在此处也是可以被访问的，它遵循 lua 通用可见性规则（参考
+<a href="http://angrybuns.github.com#3.5">§3.5</a>）。
 
 
 
@@ -367,10 +374,10 @@ following the usual visibility rules of Lua (see <a href="http://angrybuns.githu
 <!--Lua keeps a distinguished environment called the <em>global environment</em>.
 This value is kept at a special index in the C registry (see <a href="http://angrybuns.github.com#4.5">§4.5</a>).
 In Lua, the variable <a href="http://angrybuns.github.com#pdf-_G"><code>_G</code></a> is initialized with this same value.-->
-Lua 还存在一个不同于环境的 <em>全局环境</em>.
-这个值在 C 注册表中保存在一个特殊的索引下 （参考 <a href="http://angrybuns.github.com#4.5">§4.5</a>）。
-在整个 Lua 环境中, 变量 <a href="http://angrybuns.github.com#pdf-_G"><code>_G</code></a> 全部被初始化为一个相同的全局环境值。
-
+Lua 还存在一个不同于环境的
+<em>全局环境</em>。这个值在 C 注册表中保存在一个特殊的索引下 （参考
+<a href="http://angrybuns.github.com#4.5">§4.5</a>）。在整个 Lua 环境中, 变量
+<a href="http://angrybuns.github.com#pdf-_G"><code>_G</code></a> 全部被初始化为一个相同的全局环境值。
 </p><p>
 <!--When Lua compiles a chunk,
 it initializes the value of its <code>_ENV</code> upvalue
@@ -385,10 +392,9 @@ to load a chunk with a different environment.
 of its first upvalue.)-->
 当编译一个 Lua 代码段时，全局环境会被初始化为它的 <code>_ENV</code> upvalue
 （参考 <a href="http://angrybuns.github.com#pdf-load"><code>load</code></a>）。
-因此，在默认情况下，Lua 代码中的全局变量都是通过全局环境做为访问入口来进行访问的。
-此外，所有加载到全局环境的标准库和一些函数，都是工作在此环境中的。
-如果要在不同的环境下加载代码段，可以参考 <a href="http://angrybuns.github.com#pdf-load"><code>load</code></a> （或者 <a href="http://angrybuns.github.com#pdf-loadfile"><code>loadfile</code></a>）。
-（在 C 环境中， 你可以 load 代码段，然后调整它的第一个 upvalue 来实现环境的调整。）
+因此，在默认情况下，Lua 代码中的全局变量都是通过全局环境做为访问入口来进行访问的。此外，所有加载到全局环境的标准库和一些函数，都是工作在此环境中的。如果要在不同的环境下加载代码段，可以参考
+<a href="http://angrybuns.github.com#pdf-load"><code>load</code></a>
+（或者 <a href="http://angrybuns.github.com#pdf-loadfile"><code>loadfile</code></a>）。（在 C 环境中， 你可以 load 代码段，然后调整它的第一个 upvalue 来实现环境的调整。）
 </p><p>
 <!-- If you change the global environment in the registry
 (through C code or the debug library),
