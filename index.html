@@ -195,21 +195,21 @@ see Roberto's book, <em>Programming in Lua</em>. -->
 </p><h2>2.1 – <a name="2.1"><!-- Values and Types -->值与类型</a></h2>
 
 <p>
-Lua is a <em>dynamically typed language</em>.
+<!-- Lua is a <em>dynamically typed language</em>.
 This means that
 variables do not have types; only values do.
 There are no type definitions in the language.
-All values carry their own type.
-
+All values carry their own type. -->
+Lua 是一个 <em>动态语言</em>。这意味着，只有值才会拥有类型，而变量则没有类型的。因此，它不需要对变量进行类型定义，所有的值都会保存有自己的类型。
 
 </p><p>
-All values in Lua are <em>first-class values</em>.
+<!-- All values in Lua are <em>first-class values</em>.
 This means that all values can be stored in variables,
-passed as arguments to other functions, and returned as results.
-
+passed as arguments to other functions, and returned as results. -->
+在 Lua 中所有的值都是 <em>first-class values</em> （第一类值）。因此，所有的值都可以保存在变量中，可以做为参数传递给其它函数，也可以做为一个返回值进行返回。
 
 </p><p>
-There are eight basic types in Lua:
+<!-- There are eight basic types in Lua:
 <em>nil</em>, <em>boolean</em>, <em>number</em>,
 <em>string</em>, <em>function</em>, <em>userdata</em>,
 <em>thread</em>, and <em>table</em>.
@@ -231,7 +231,12 @@ see file <code>luaconf.h</code>.)
 
 Lua is 8-bit clean:
 strings can contain any 8-bit value,
-including embedded zeros ('<code>\0</code>').
+including embedded zeros ('<code>\0</code>'). -->
+Lua 共有八种类基本类型：<em>nil</em>、<em>boolean</em>、<em>number</em>、<em>string</em>、<em>function</em>、<em>userdata</em>、<em>thread</em> 和 
+<em>table</em>。<b>nil</b> 的类型是 <em>Nil</em>，通常用于表示其它可用值的不存在状态，这也是它不同于其它所有类型的地方。<em>Boolean</em>
+只有 <b>false</b> 和 <b>true</b> 两个值。在布尔判定中，除了 <b>nil</b> 和 <b>false</b>
+之外的所有值都会被判定为 true，<b>nil</b> 和 <b>false</b>
+则会被判定为 <b>false</b>。<em>Number</em> 表示数字类型（double 或 float），此类型拥有和 C 相同的操作特性。
 
 
 </p><p>
