@@ -181,8 +181,8 @@ For a discussion of the decisions behind the design of Lua,
 see the technical papers available at Lua's web site.
 For a detailed introduction to programming in Lua,
 see Roberto's book, <em>Programming in Lua</em>. -->
-类似于其它的参考手册，此文档也是比较也是比较枯燥。如果需要获取 Lua 设计背后的探讨和决策，请前往 Lua
-官方网站获取相关技术文档。如果需要详细的 Lua 编程介绍，请参考 Roberto 编写的 <em>《Programming in Lua》</em>。
+类似于其它的参考手册，此文档也是比较也是比较枯燥。关于 Lua 的设计想法的探讨，可以看看 Lua 网站上提供的技术论文。
+如果需要详细的 Lua 编程介绍，请参考 Roberto 编写的 <em>《Programming in Lua》</em>。
 
 </p><h1>2 – <a name="2"><!-- Basic Concepts -->基础概念</a></h1>
 
@@ -264,17 +264,25 @@ Userdata values cannot be created or modified in Lua,
 only through the C&nbsp;API.
 This guarantees the integrity of data owned by the host program. -->
 <em>userdata</em> 是一种 lua 特有的类型。这种类型的变量可以储存任意的 C 数据。
+通常一个 userdata 相当于一块原生内存。lua 有两种 <em>userdata</em>，分别是 full userdata 和
+light userdata。这两种类型的 <em>userdata</em> 主要是的区别在于对此数据的内存的管理者不同。full userata
+的内存是由 lua 自己管理，light userdata 的内存则是由宿主语言来管理。
+lua 并没有对 userdata 设置除赋值和相同性比较之外的其它任何预定义操作。通过使用 <em>metatables</em> 可以给 full userdata 的值定义操作特性（参见 <a href="#2.4">§2.4</a>）。
+userdata 值的创建和修改只能通过 C API 来进行，不能通过 lua 来进行。这个设定保证了此值全部处于宿主程序的控制之下。
+
 
 </p><p>
-The type <em>thread</em> represents independent threads of execution
+<!-- The type <em>thread</em> represents independent threads of execution
 and it is used to implement coroutines (see <a href="#2.6">§2.6</a>).
 Do not confuse Lua threads with operating-system threads.
 Lua supports coroutines on all systems,
-even those that do not support threads.
-
+even those that do not support threads. -->
+<em>thread</em>> 类型用来区别独立的执行线程，它被用来实现 coroutine
+（协同例程）（参见 <a href="#2.6">§2.6</a>）。不要将 lua 线程和操作系统线程混淆。
+在任何操作系统（包括不支持多线程的操作系统）中 lua 都支持 coroutines （协同程序）。
 
 </p><p>
-The type <em>table</em> implements associative arrays,
+<!-- The type <em>table</em> implements associative arrays,
 that is, arrays that can be indexed not only with numbers,
 but with any Lua value except <b>nil</b> and NaN
 (<em>Not a Number</em>, a special numeric value used to represent
@@ -283,19 +291,25 @@ Tables can be <em>heterogeneous</em>;
 that is, they can contain values of all types (except <b>nil</b>).
 Any key with value <b>nil</b> is not considered part of the table.
 Conversely, any key that is not part of a table has
-an associated value <b>nil</b>.
-
+an associated value <b>nil</b>. -->
+<em>table</em> 是一种关联数组。不仅仅是数字，任何除 <b>nil</b> 和 NaN
+（<em>Not a Number</em>> 非数字类型，一种特殊的数字类型的值，通常用来表示未定义或非法结果。比如
+<code>0/0</code>）之外的 lua 类型的值都可以作为它的索引。
+table 可以以不同的值来构成。可以包含任何类型的值（<b>nil</b> 除外）。如果 table 的一个索引的值是 <b>nil</b>
+则认为这个 table 不包含这个索引。也就是说，如果一个 table 不包含一个索引，则可以认为这个索引对应的值是 <b>nil</b>。
 
 </p><p>
-Tables are the sole data structuring mechanism in Lua;
+<!-- Tables are the sole data structuring mechanism in Lua;
 they can be used to represent ordinary arrays, sequences,
 symbol tables, sets, records, graphs, trees, etc.
 To represent records, Lua uses the field name as an index.
 The language supports this representation by
 providing <code>a.name</code> as syntactic sugar for <code>a["name"]</code>.
 There are several convenient ways to create tables in Lua
-(see <a href="#3.4.8">§3.4.8</a>).
-
+(see <a href="#3.4.8">§3.4.8</a>). -->
+table 是 lua 中唯一的数据结构。它可以描述普通数组、关联表、符号表、集合、记录、图、树等等。用来描述记录的时候，lua 使用字段名作为索引。
+lua 本身采用一种语法糖，来实现用 <code>a.name</code> 表示 <code>a["name"]</code>。
+在 lua 中有通过很多方式去创建一个 table（参见 <a href="#3.4.8">§3.4.8</a>）。
 
 </p><p>
 We use the term <em>sequence</em> to denote a table where
