@@ -236,17 +236,20 @@ Lua 共有八种类基本类型：<em>nil</em>、<em>boolean</em>、<em>number</
 <em>table</em>。<b>nil</b> 的类型是 <em>Nil</em>，通常用于表示其它可用值的不存在状态，这也是它不同于其它所有类型的地方。<em>Boolean</em>
 只有 <b>false</b> 和 <b>true</b> 两个值。在布尔判定中，除了 <b>nil</b> 和 <b>false</b>
 之外的所有值都会被判定为 true，<b>nil</b> 和 <b>false</b>
-则会被判定为 <b>false</b>。<em>Number</em> 表示数字类型（double 或 float），此类型拥有和 C 相同的操作特性。
+则会被判定为 <b>false</b>。<em>Number</em> 表示数字类型（double 或 float），此类型和通常会遵循
+IEEE 754 浮点型标准的 C 操作类型相似。（通过调整 <code>luaconf.h</code> 可以很方便的将 lua 中的 number 类型修改成成其他类型，比如单精度浮点型、长整形等。）
+<em>String</em> 则表示了一段不可变的字符串。
 
+lua 是 8-bit clean 类型的：它可以保存包括（'<code>\0</code>'）在内的任何 8-bit 的值。
 
 </p><p>
-Lua can call (and manipulate) functions written in Lua and
+<!-- Lua can call (and manipulate) functions written in Lua and
 functions written in C
-(see <a href="#3.4.9">§3.4.9</a>).
-
+(see <a href="#3.4.9">§3.4.9</a>). -->
+lua 可以调用和操作 C 或者 lua 写的函数。（参见 <a href="#3.4.9">§3.4.9</a>）
 
 </p><p>
-The type <em>userdata</em> is provided to allow arbitrary C&nbsp;data to
+<!-- The type <em>userdata</em> is provided to allow arbitrary C&nbsp;data to
 be stored in Lua variables.
 A userdata value is a pointer to a block of raw memory.
 There are two kinds of userdata:
@@ -259,8 +262,8 @@ the programmer can define operations for full userdata values
 (see <a href="#2.4">§2.4</a>).
 Userdata values cannot be created or modified in Lua,
 only through the C&nbsp;API.
-This guarantees the integrity of data owned by the host program.
-
+This guarantees the integrity of data owned by the host program. -->
+<em>userdata</em> 是一种 lua 特有的类型。这种类型的变量可以储存任意的 C 数据。
 
 </p><p>
 The type <em>thread</em> represents independent threads of execution
