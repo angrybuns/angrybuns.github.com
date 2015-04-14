@@ -1130,28 +1130,35 @@ it may not be properly cleared until the next cycle.
 
 
 
-</p><h2>2.6 – <a name="2.6">Coroutines</a></h2>
+<!-- </p><h2>2.6 – <a name="2.6">Coroutines</a></h2> -->
+</p><h2>2.6 – <a name="2.6">协程</a></h2>
 
 <p>
-Lua supports coroutines,
+<!-- Lua supports coroutines,
 also called <em>collaborative multithreading</em>.
 A coroutine in Lua represents an independent thread of execution.
 Unlike threads in multithread systems, however,
 a coroutine only suspends its execution by explicitly calling
-a yield function.
+a yield function. -->
+Lua 支持协程，
+它也被称为 <em>协同多线程</em> (collaborative multithreading)。
+一个协程在 Lua 中可以看做是一个独立的执行线程。
+不同于多任务系统中的线程，协程只能在显示的调用 yied 函数的时候才能进入暂停状态。
 
 
 </p><p>
-You create a coroutine by calling <a href="#pdf-coroutine.create"><code>coroutine.create</code></a>.
+<!-- You create a coroutine by calling <a href="#pdf-coroutine.create"><code>coroutine.create</code></a>.
 Its sole argument is a function
 that is the main function of the coroutine.
 The <code>create</code> function only creates a new coroutine and
 returns a handle to it (an object of type <em>thread</em>);
-it does not start the coroutine.
-
+it does not start the coroutine. -->
+你可以使用 <a href="#pdf-coroutine.create"><code>coroutine.create</code></a> 来创建一个协程。
+此协程的主函数，需要作为此接口的唯一参数传入。
+函数 <code>create</code> 会创建一个新的未执行的协程，并且将此协程的句柄作为函数返回值返回 (一个 <em>thread</em> 类型的对象),
 
 </p><p>
-You execute a coroutine by calling <a href="#pdf-coroutine.resume"><code>coroutine.resume</code></a>.
+<!-- You execute a coroutine by calling <a href="#pdf-coroutine.resume"><code>coroutine.resume</code></a>.
 When you first call <a href="#pdf-coroutine.resume"><code>coroutine.resume</code></a>,
 passing as its first argument
 a thread returned by <a href="#pdf-coroutine.create"><code>coroutine.create</code></a>,
@@ -1160,19 +1167,25 @@ at the first line of its main function.
 Extra arguments passed to <a href="#pdf-coroutine.resume"><code>coroutine.resume</code></a> are passed on
 to the coroutine main function.
 After the coroutine starts running,
-it runs until it terminates or <em>yields</em>.
+it runs until it terminates or <em>yields</em>. -->
+通过接口 <a href="#pdf-coroutine.resume"><code>coroutine.resume</code></a> 可以启动一个协程。
+如果是首次调用 <a href="#pdf-coroutine.resume"><code>coroutine.resume</code></a>，需要将 <a href="#pdf-coroutine.create"><code>coroutine.create</code></a> 返回的一个 thread 类型的对象作为第一个参数传入，此时启动的协程将会从此协程主函数的第一行开始执行。
+传递给 <a href="#pdf-coroutine.resume"><code>coroutine.resume</code></a> 的第一个参数之后的其它参数，将会按顺序传递给此协程的主函数。
+当一个协程启动的时候，如果未遇到 <em>yields</em>，会一直执行到主函数终止。
 
 
 </p><p>
-A coroutine can terminate its execution in two ways:
+<!-- A coroutine can terminate its execution in two ways:
 normally, when its main function returns
 (explicitly or implicitly, after the last instruction);
 and abnormally, if there is an unprotected error.
 In the first case, <a href="#pdf-coroutine.resume"><code>coroutine.resume</code></a> returns <b>true</b>,
 plus any values returned by the coroutine main function.
 In case of errors, <a href="#pdf-coroutine.resume"><code>coroutine.resume</code></a> returns <b>false</b>
-plus an error message.
-
+plus an error message. -->
+导致协程执行结束的方式有两种：
+1. 主函数正常返回，此时 <a href="#pdf-coroutine.resume"><code>coroutine.resume</code></a> 会返回 <b>true</b> 和主函数的返回值。
+2. 发生异常，此时 <a href="#pdf-coroutine.resume"><code>coroutine.resume</code></a> 会返回 <b>false</b> 和一个错误信息。
 
 </p><p>
 A coroutine yields by calling <a href="#pdf-coroutine.yield"><code>coroutine.yield</code></a>.
