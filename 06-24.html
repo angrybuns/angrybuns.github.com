@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+	<!-- saved from url=(0041)http://www.angrybuns.com/index.html -->
+	<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Lua 5.2 Reference Manual</title>
+	<link rel="stylesheet" type="text/css" href="./Lua 5.2 Reference Manual_files/lua.css">
+	<link rel="stylesheet" type="text/css" href="./Lua 5.2 Reference Manual_files/manual.css">
+	
+	<div><style>*{font-family:undefined,sans-serif!important;}</style></div><style type="text/css"></style><style type="text/css">#yieldsquare-ad {
+	  margin:10px auto 20px;
+	
+	  width: 728px;
+	}
+	
+	#yieldsquare-about a {
+	  cursor: pointer;
+	}
+	
+	.yieldsquare-enabled {
+	  border-radius:0 0 5px 5px;
+	  box-shadow: inset 0 0 75px 75px lightgray, 0 0 0 lightgray;
+	  -webkit-transition:opacity 1s linear;
+	}
+	
+	.yieldsquare-disabled-first {
+	  -webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.45);
+	  -webkit-transition: opacity 1s linear;
+	  background-image: url(http://s3.amazonaws.com/static.yieldsquare.com/ads-disabled/messagebed.gif);
+	  height: 90px;
+	  opacity: 1;
+	  position: relative;
+	  width: 728px;
+	}
+	
+	.yieldsquare-disabled-second {
+	  -webkit-transition: all 0.4s ease-in-out;
+	  background-image: url(http://s3.amazonaws.com/static.yieldsquare.com/ads-disabled/messagebed.gif);
+	  border-radius:0 0 5px 5px;
+	  box-shadow: inset 0 0 35px 35px transparent, 0 0 75px 50px transparent;
+	  height: 90px;
+	  opacity: 0;
+	  position: relative;
+	  width: 728px;
+	}
+	
+	#yieldsquare-about-ad {
+	  font:11px arial !important;
+	  color:#555;
+	  padding: 4px;
+	  text-align:center;
+	}
+	
+	#yieldsquare-about-ad a {
+	  cursor: pointer;
+	  color: #333;
+	}
+	
+	.yieldsquare-message-icon {
+	    position: absolute;
+	    top: 20px;
+	    left: 20px;
+	}
+	
+	.yieldsquare-message-p {
+	    font: 13px/17px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	    width: 542px;
+	    height: 74px;
+	    left: 123px;
+	    position: absolute;
+	    top: 0px;
+	    color: #3d3d3d;
+	    margin-top: 13px;
+	    margin-bottom: 13px;
+	}
+	
+	.yieldsquare-message-p span {
+	    font: bold 16px/17px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	    color: #292929;
+	}
+	
+	.yieldsquare-message-p a {
+	    text-decoration: none;
+	    color: #1d97cf;
+	}
+	
+	.yieldsquare-message-p a:hover {
+	    text-decoration: underline;
+	}
+	
+	#yieldsquare-message-x {
+	    position: absolute;
+	    left: 715px;
+	    top: 6px;
+	}
+	
+	</style><style>@-moz-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@-webkit-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@-o-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}embed,object{animation-duration:.001s;-ms-animation-duration:.001s;-moz-animation-duration:.001s;-webkit-animation-duration:.001s;-o-animation-duration:.001s;animation-name:nodeInserted;-ms-animation-name:nodeInserted;-moz-animation-name:nodeInserted;-webkit-animation-name:nodeInserted;-o-animation-name:nodeInserted;}</style></head>
+	
+	<body>
+<h1>游戏反推案是什么</h1><p>
+<p>
+通过对一个游戏的使用体验，透过游戏的外在包装，找出游戏的内在规则。最后以文字、结构图、公式的方式，将游戏分解成一份可见细节重点、可供分析讨论、可进行开发预备的文档。<p>
+简单说可分成以下几个部分：<p>
+<p>
+寻找游戏的结构原型：<p>
+用最简洁的表述，来说明这个游戏的目标激励、玩家行为动机、PVE PVP互动对游戏的影响，以及游戏的主要机制是如何循环起来的。所谓提纲挈领就是要抓住主要点之后，往下分析才不至于跑偏。<p>
+<p>
+还原游戏的系统脉络：<p>
+分解游戏的各个系统，明确其在游戏中所处的位置，提供的资源与目的，与其他系统的关联。一个好的游戏，各个系统功能间必然是一个较为紧密互通的整体。一个简洁漂亮的结构图能让你迅速理清游戏的系统关联。<p>
+<p>
+推导游戏的数值模型：<p>
+用数值公式大致模拟反推出一个游戏的数学特征，包括不限于游戏的升级曲线，简单经济模型，攻防公式，能力提升模板。同时从模拟数值公式中得出曲线图表，以此和系统结构相互对应以便于更加深入了解如此设计的原因。<p>
+<p>
+重现游戏关卡要素：<p>
+从关卡流程、触发机制、可控操作等方面，来反推游戏关卡/副本设计的功能要素，包括不限于：关卡/副本的基本限制、内在逻辑、触发器、计数器、可改变因素、特殊道具等，以及如何将这些要素有序地组成一个有趣的关卡。同时这还包括：玩家在关卡中的行走路线设计，玩家关卡进度的延续与引导，关卡间的递进与替换，关卡的重复利用等。<p>
+<p>
+追溯世界观剧情发展：<p>
+分解游戏的剧情脉络，各种明暗线关系，如何逐步引导玩家代入，世界观背景走向以及关键事件中的人物对话、行为是如何展现冲突，对后续剧情怎样的影响，并对整体剧情的烘托升华起到什么作用。（好吧，剧情这块不是专业，没自己做过，只是想当然了。针对国内的游戏产品反推基本没这个必要，但国外的大作这么分析起来会是一件颇有趣的事情吧。<p>
+最后，游戏反推其实是对游戏本身的一种过度诠释。肯定不能百分百还原一个黑盒。反推的真正目的在于借助他人来理清自己的思路，吸收其中的亮点化为己用。单纯为照抄而进行的反推是没有任何意义的。</body>
