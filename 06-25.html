@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+	<!-- saved from url=(0041)http://www.angrybuns.com/index.html -->
+	<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>游戏反推案具体（一）</title>
+	<link rel="stylesheet" type="text/css" href="./Lua 5.2 Reference Manual_files/lua.css">
+	<link rel="stylesheet" type="text/css" href="./Lua 5.2 Reference Manual_files/manual.css">
+	
+	<div><style>*{font-family:undefined,sans-serif!important;}</style></div><style type="text/css"></style><style type="text/css">#yieldsquare-ad {
+	  margin:10px auto 20px;
+	
+	  width: 728px;
+	}
+	
+	#yieldsquare-about a {
+	  cursor: pointer;
+	}
+	
+	.yieldsquare-enabled {
+	  border-radius:0 0 5px 5px;
+	  box-shadow: inset 0 0 75px 75px lightgray, 0 0 0 lightgray;
+	  -webkit-transition:opacity 1s linear;
+	}
+	
+	.yieldsquare-disabled-first {
+	  -webkit-box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.45);
+	  -webkit-transition: opacity 1s linear;
+	  background-image: url(http://s3.amazonaws.com/static.yieldsquare.com/ads-disabled/messagebed.gif);
+	  height: 90px;
+	  opacity: 1;
+	  position: relative;
+	  width: 728px;
+	}
+	
+	.yieldsquare-disabled-second {
+	  -webkit-transition: all 0.4s ease-in-out;
+	  background-image: url(http://s3.amazonaws.com/static.yieldsquare.com/ads-disabled/messagebed.gif);
+	  border-radius:0 0 5px 5px;
+	  box-shadow: inset 0 0 35px 35px transparent, 0 0 75px 50px transparent;
+	  height: 90px;
+	  opacity: 0;
+	  position: relative;
+	  width: 728px;
+	}
+	
+	#yieldsquare-about-ad {
+	  font:11px arial !important;
+	  color:#555;
+	  padding: 4px;
+	  text-align:center;
+	}
+	
+	#yieldsquare-about-ad a {
+	  cursor: pointer;
+	  color: #333;
+	}
+	
+	.yieldsquare-message-icon {
+	    position: absolute;
+	    top: 20px;
+	    left: 20px;
+	}
+	
+	.yieldsquare-message-p {
+	    font: 13px/17px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	    width: 542px;
+	    height: 74px;
+	    left: 123px;
+	    position: absolute;
+	    top: 0px;
+	    color: #3d3d3d;
+	    margin-top: 13px;
+	    margin-bottom: 13px;
+	}
+	
+	.yieldsquare-message-p span {
+	    font: bold 16px/17px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	    color: #292929;
+	}
+	
+	.yieldsquare-message-p a {
+	    text-decoration: none;
+	    color: #1d97cf;
+	}
+	
+	.yieldsquare-message-p a:hover {
+	    text-decoration: underline;
+	}
+	
+	#yieldsquare-message-x {
+	    position: absolute;
+	    left: 715px;
+	    top: 6px;
+	}
+	
+	</style><style>@-moz-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@-webkit-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@-o-keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}@keyframes nodeInserted{from{opacity:0.99;}to{opacity:1;}}embed,object{animation-duration:.001s;-ms-animation-duration:.001s;-moz-animation-duration:.001s;-webkit-animation-duration:.001s;-o-animation-duration:.001s;animation-name:nodeInserted;-ms-animation-name:nodeInserted;-moz-animation-name:nodeInserted;-webkit-animation-name:nodeInserted;-o-animation-name:nodeInserted;}</style></head>
+	
+	<body>
+<h1>游戏反推案具体（一）</h1><p>
+<p>
+《倩女幽魂2》活动设计文档 暑假活动<p>
+<p>
+1.0.0	设计需求<p>
+<p>
+1.1.0	目的<p>
+<p>
+1、	倩女幽魂中有很多学生，暑假会有大量时间，丰富这群玩家的游戏活动体验<p>
+2、	全民皆可参与（30级以上的角色皆可参与其中）。<p>
+3、	热闹，聚众<p>
+4、	避免利益性，不修改涉及游戏实用性的数据。<p>
+5、	为玩家普及高修为的灵兽<p>
+<p>
+1.2.0	开发时间规划<p>
+<p>
+1.3.0	活动简述 <p>
+<p>
+1、	玩家在活动期间登录游戏，每天在线30分钟后会获得一颗【夏日清凉丹】。使用夏日清凉丹可以去新手村中泡温泉。<p>
+2、	在活动期间，玩家可以在北京城接到节日相关的任务。<p>
+3、	活动期间会推出一种高修为的全新的灵兽。<p>
+4、	活动会提供各种消费渠道，让玩家参与活动的同时进行消费。<p>
+5、	活动完成后给予相关的成就，并可获得称号。<p>
+<p>
+2.0.0	相关内容活动信息<p>
+<p>
+活动时间：2015-6-08~ 2015-9-01维护后结束<p>
+活动地点：主要集中在60级以前的场景以及各大主城<p>
+<p>
+2.1.0	活动玩法<p>
+<p>
+活动开始：<p>
+<p>
+1.通过系统消息告诉大家活动已经开始，系统私聊的方式。<p>
+2.活动时间：2015-6-08~ 2015-9-01<p>
+3.任务目标：通过任务丰富玩家体验，普及高修为灵兽<p>
+4.玩法详述：<p>
+1)活动开始后，玩家每天在线30分钟后，会自动获得一个夏日清凉丹。夏日清凉丹是要在玩家泡温泉时使用，即门票。（当夏日清凉丹掉入包裹后，提示可以使用夏日清凉丹去新手村泡温泉）<p>
+2)一般的玩家获得一件道具以后，都会习惯性的右键点击道具，当右键点击道具后，提示不能直接使用，需要去新手村温泉区域泡温泉使用，并且提示温泉的坐标。可以点击坐标自动寻路<p>
+3)自动寻路到达新手村的活动区域后，与温泉旁边的NPC对话后，NPC将玩家传送进温泉区域，同时扣除身上的夏日清凉丹，当玩家背包中没有夏日清凉丹时，不可参加活动。每个温泉具有人数上限设置，如果当前温泉中人数已满，则提示稍等一会儿再来。<p>
+4)在温泉中需要保持2分钟，不可移动，每10秒获得一定经验。当玩家在温泉中保持2分钟后，会随机变身成为【冰西瓜】【冰块】【扇子】，分别获得与变身相同的任务道具，西瓜，冰块，扇子。同时会自动传送到主城中接取任务的NPC旁接取夏日任务【夏日炎炎送清凉】<p>
+5)接取任务时，需要队伍中同时拥有三种变身的玩家每种一个，并且每种变身需要有且仅有1个。若队伍中缺少变身或者有某一种变身多于一个，则不可以接任务。<p>
+6)任务【夏日炎炎送清凉】<p>
+      A)玩家在成功组队后领取任务，领取后随机让其随机去拜访三个NPC，并且为他们送上清凉，任务界面会标示出任务所需的NPC名字以及坐标，点击坐标自动寻路<p>
+      B)玩家自动寻路到指定的NPC后，选中NPC后对其使用在泡温泉时获得的任务道具，进行读条，读条结束后完成对该NPC的任务目标，完成三个NPC的任务目标后，即完成任务。可自动寻路到主城活动NPC交付任务，在对任务目标NPC使用任务道具，交付任务，接收任务时，都需要三个玩家在同一个范围区域中。<p>
+      C)交还任务后，玩家除了经验和银两的奖励外，必定会获得一个【夜夜红】，较小几率获得灵兽【夏萤萤（80修为可携带）】，30个夜夜红可以合成一个灵兽夏萤萤。<p>
+      D)活动目标NPC选取：<p>
+主要为主城内主要功能性NPC，60级野外地图主要剧情NPC，十大门派掌门，选取30个后，每天任务随机三个不重复NPC。<p>
+<p>
+<p>
+OMZ 求从程序角度补充<p>
+<p>
+这策划叼叼的，啥都想到了，没啥补充的，直接开搞就是了！</body>
